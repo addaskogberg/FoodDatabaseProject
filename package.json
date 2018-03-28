@@ -1,0 +1,23 @@
+{
+  "name": "mjukvaruprojekt1",
+  "version": "1.0.0",
+  "description": "node javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv430/as224wq-project.git"
+  },
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "adda skogberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv430/as224wq-project/issues"
+  },
+  "homepage": "https://github.com/1dv430/as224wq-project#readme"
+}
