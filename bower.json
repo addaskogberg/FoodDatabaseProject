@@ -1,0 +1,22 @@
+{
+  "name": "mjukvaruprojekt1",
+  "description": "node javascript",
+  "main": "app.js",
+  "authors": [
+    "adda skogberg"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "homepage": "https://github.com/1dv430/as224wq-project",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
