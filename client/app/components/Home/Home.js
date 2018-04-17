@@ -200,7 +200,7 @@ class Home extends Component {
               token: '',
               isLoading: false
             });
-          /*   this.props.history.push(`../HelloWorld/HelloWorld`) */
+            // this.props.history.push(`../LogOut/LogOut`) 
           } else {
             this.setState({
               isLoading: false,
@@ -241,22 +241,22 @@ class Home extends Component {
                 <p>{signInError}</p>
               ) : (null)
             }
-            <p>Sign In</p>
+            <p>Logga In</p>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Mail"
               value={signInEmail}
               onChange={this.onTextboxChangeSignInEmail}
             />
             <br />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Lösenord"
               value={signInPassword}
               onChange={this.onTextboxChangeSignInPassword}
             />
             <br />
-            <button onClick={this.onSignIn}>Sign In</button>
+            <button onClick={this.onSignIn}>Logga In</button>
           </div>
           <br />
           <br />
@@ -266,17 +266,17 @@ class Home extends Component {
                 <p>{signUpError}</p>
               ) : (null)
             }
-            <p>Sign Up</p>
+            <p>Skapa användare</p>
             <input 
            type="text" 
-           placeholder="First Name" 
+           placeholder="Förnamn" 
            value={signUpFirstName} 
            onChange={this.onTextboxChangeSignUpFirstName}
            />
            <br />
            <input 
            type="text" 
-           placeholder="Last Name" 
+           placeholder="Efternamn" 
            value={signUpLastName}
            onChange={this.onTextboxChangeSignUpLastName}
            />
@@ -289,11 +289,11 @@ class Home extends Component {
             /><br />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Lösenord"
               value={signUpPassword}
               onChange={this.onTextboxChangeSignUpPassword}
             /><br />
-            <button onClick={this.onSignUp}>Sign Up</button>
+            <button onClick={this.onSignUp}>Skapa konto</button>
           </div>
 
         </div>
