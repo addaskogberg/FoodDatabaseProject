@@ -1,7 +1,9 @@
 import React from 'react';
 
 const LogOut = () => (
-  <p>Du är utloggad!</p>
+  <div className="logout">
+  <h1>Du är utloggad!</h1>
+  </div>
 );
 
 export default LogOut;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-
 import {
   getFromStorage,
   setInStorage,
@@ -200,7 +199,7 @@ class Home extends Component {
               token: '',
               isLoading: false
             });
-            // this.props.history.push(`../LogOut/LogOut`) 
+             this.props.history.push(`../LogOut/LogOut`) 
           } else {
             this.setState({
               isLoading: false,
@@ -299,9 +298,22 @@ class Home extends Component {
         </div>
       );
     }
-
+  
     return (
-      <div>
+      <div className="logonpage">
+        <p> Användarens namn ska skrivas ut här</p>
+        <br />
+        <br />
+        <br />
+        <p> Här ska användarens inmatning finnas </p>
+        <br />
+        <br />
+        <br />
+        <p> Här ska användarens tidigare data  finnas </p>
+        <br />
+        <br />
+        <br />
+        <br />   
         <p>Account</p>
         <button onClick={this.logout}>Logout</button>
       </div>
