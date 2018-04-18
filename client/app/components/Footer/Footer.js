@@ -1,10 +1,15 @@
 import React from 'react';
 
+
 const Footer = () => (
   <footer>
-    <hr />
-    <p>Fyll på här med innehåll</p>
+  <div >
+    
+    <p>Fyll på här med innehåll för footer</p>
+   </div> 
   </footer>
 );
+
+
 
 export default Footer;
