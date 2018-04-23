@@ -1,5 +1,5 @@
  import React from 'react';
- const footerStyle ={color:'green', backgroundColor:'red', height:'330px', backgroundImage:'/../water.jpg'}
+ const footerStyle ={color:'green', backgroundColor:'red', height:'330px', backgroundImage:'../img/water.png'}
 
  
 
