@@ -298,7 +298,7 @@ class Home extends Component {
         </div>
       );
     }
-  
+    
     return (
       <div className="logonpage">
         <p> Användarens namn ska skrivas ut här</p>
@@ -310,7 +310,6 @@ class Home extends Component {
         <br />
         <br />
         <p> Här ska användarens tidigare data  finnas </p>
-        <br />
         <br />
         <br />
         <br />   
