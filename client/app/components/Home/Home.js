@@ -233,8 +233,8 @@ class Home extends Component {
 
     if (!token) {
       return (
-        <div>
-          <div>
+        <div >
+          <div >
             {
               (signInError) ? (
                 <p>{signInError}</p>
@@ -300,7 +300,7 @@ class Home extends Component {
     }
     
     return (
-      <div className="logonpage">
+      <div style={{color:'green', backgroundColor:'red'}}>
         <p> Användarens namn ska skrivas ut här</p>
         <br />
         <br />

@@ -1,14 +1,17 @@
  import React from 'react';
- const footerStyle ={color:'green', backgroundColor:'red', height:'330px', backgroundImage:'../img/water.png'}
-
  
-
+//  const footerstyle = { backgroundImage:`url($(bg))`}
+ /* const footerStyle ={color:'green', backgroundColor:'red', height:'330px', backgroundImage:`url($(bg))`}  
+ */
+ 
+const winter = 'assets/img/water.jpg';
 
 const Footer = () => (
   <footer>
-     
-  <div > 
-    <p style={footerStyle}>Fyll på här med innehåll för footer</p>    
+   
+  <div style={{color:'green', backgroundColor:'red', height:'150px', backgroundImage: "url(" + winter + ")"}}> 
+
+    <p>Fyll på här med innehåll för footer</p>  
  
    </div> 
   </footer>
@@ -19,4 +22,3 @@ const Footer = () => (
 
 
 export default Footer; 
-

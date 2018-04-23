@@ -8,6 +8,8 @@ import {
   Switch
 } from 'react-router-dom'
 
+import ReactDom from 'react-dom'; //installlerat som test
+
 import App from './components/App/App';
 import NotFound from './components/App/NotFound';
 
