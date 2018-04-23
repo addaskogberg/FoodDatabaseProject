@@ -9,7 +9,7 @@ const winter = 'assets/img/water.jpg';
 const Footer = () => (
   <footer>
    
-  <div style={{color:'green', backgroundColor:'red', height:'150px', backgroundImage: "url(" + winter + ")"}}> 
+  <div style={{color:'green', backgroundColor:'red', height:'150px', position: 'absolute ', bottom:'0', width: '100%' ,backgroundImage: "url(" + winter + ")"}}> 
 
     <p>Fyll på här med innehåll för footer</p>  
  

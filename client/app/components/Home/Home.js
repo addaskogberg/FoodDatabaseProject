@@ -4,10 +4,12 @@ import {
   getFromStorage,
   setInStorage,
 } from '../../utils/storage';
+import { userInfo } from 'os';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+   
 
     this.state = {
       isLoading: true,
@@ -32,6 +34,7 @@ class Home extends Component {
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
     this.logout = this.logout.bind(this);
+    this.firstName = this.firstName.bind(this);
   }
 
   componentDidMount() {
@@ -165,7 +168,9 @@ class Home extends Component {
       .then(json => {
         console.log('json', json);
         if (json.success) {
-          setInStorage('the_main_app', { token: json.token });
+          setInStorage('the_main_app', { token: json.token});
+          setInStorage('the_main_name', { firstName: json.firstName });
+          
           this.setState({
             signInError: json.message,
             isLoading: false,
@@ -212,6 +217,10 @@ class Home extends Component {
       });
     }
   }
+
+   firstName(){
+    return getFromStorage('the_main_name');
+   };
 
   render() {
     const {
@@ -299,9 +308,14 @@ class Home extends Component {
       );
     }
     
+
+
+   console.log(getFromStorage('the_main_name')) 
     return (
-      <div style={{color:'green', backgroundColor:'red'}}>
+      <div style={{color:'green', backgroundColor:'red', height: '100%'}}>
         <p> Användarens namn ska skrivas ut här</p>
+        <h2> {}</h2>
+        <h2>It is {new Date().toLocaleTimeString()}.</h2>
         <br />
         <br />
         <br />
@@ -313,7 +327,6 @@ class Home extends Component {
         <br />
         <br />
         <br />   
-        <p>Account</p>
         <button onClick={this.logout}>Logout</button>
       </div>
     );

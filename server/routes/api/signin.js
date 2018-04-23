@@ -140,7 +140,8 @@ module.exports = (app) => {
         return res.send({
             success: true,
             message: 'Valid sign in',
-            token: doc._id
+            token: doc._id,
+            firstName: user.firstName
         });
       });
     });
