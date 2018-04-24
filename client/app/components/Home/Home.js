@@ -309,10 +309,11 @@ class Home extends Component {
     }
     
 
+    const stone = 'assets/img/stones.png';
 
    console.log(JSON.stringify(getFromStorage('the_main_name'))); 
     return (
-      <div style={{color:'green', backgroundColor:'red', height: '100%'}}>
+      <div style={{color:'#fcf4ff', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
         <h2> Användarens namn ska skrivas ut här</h2>
         <h2> {(JSON.stringify(getFromStorage('the_main_name')))}</h2>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
