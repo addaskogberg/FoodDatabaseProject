@@ -219,7 +219,7 @@ class Home extends Component {
   }
 
    firstName(){
-    return getFromStorage('the_main_name');
+    return (getFromStorage('the_main_name'));
    };
 
   render() {
@@ -310,11 +310,11 @@ class Home extends Component {
     
 
 
-   console.log(getFromStorage('the_main_name')) 
+   console.log(JSON.stringify(getFromStorage('the_main_name'))); 
     return (
       <div style={{color:'green', backgroundColor:'red', height: '100%'}}>
-        <p> Användarens namn ska skrivas ut här</p>
-        <h2> {}</h2>
+        <h2> Användarens namn ska skrivas ut här</h2>
+        <h2> {(JSON.stringify(getFromStorage('the_main_name')))}</h2>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
         <br />
         <br />
