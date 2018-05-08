@@ -14,5 +14,5 @@ const App = ({ children }) => (
     <Footer />
   </>
 );
-console.log('test')
+
 export default App;
