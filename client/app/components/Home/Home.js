@@ -249,9 +249,9 @@ class Home extends Component {
                 <p>{signInError}</p>
               ) : (null)
             }
-            <h2 style={{color:'#bdb0c0', marginBottom:'-1px'}} >Logga In</h2>
+            <h2 style={{color:'#7b667f', marginBottom:'-1px'}} >Logga In</h2>
             <input 
-              style={{color:'#bdb0c0', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
+              style={{color:'#7b667f', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="email"
               placeholder=" Mail"
               value={signInEmail}
@@ -259,51 +259,55 @@ class Home extends Component {
             />
             <br />
             <input
-              style={{color:'#bdb0c0', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
+              style={{color:'#7b667f', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="password"
               placeholder=" Lösenord"
               value={signInPassword}
               onChange={this.onTextboxChangeSignInPassword}
             />
             <br />
-            <button style={{color:'#bdb0c0', borderRadius:'3px', border: '2px solid gray'}} onClick={this.onSignIn}>Logga In</button>
+            <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.onSignIn}>Logga In</button>
           </div>
           <br />
           <br />
-          <div>
+          <div style={{marginRight:'50px',marginTop:'100px', float:'right'}}>
             {
               (signUpError) ? (
                 <p>{signUpError}</p>
               ) : (null)
             }
-            <p>Skapa användare</p>
+            <h2 style={{color:'#7b667f', marginBottom:'-1px'}}>Skapa användare</h2>
             <input 
+            style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}}
            type="text" 
-           placeholder="Förnamn" 
+           placeholder=" Förnamn" 
            value={signUpFirstName} 
            onChange={this.onTextboxChangeSignUpFirstName}
            />
            <br />
            <input 
+           style={{color:'#7b667f', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
            type="text" 
-           placeholder="Efternamn" 
+           placeholder=" Efternamn" 
            value={signUpLastName}
            onChange={this.onTextboxChangeSignUpLastName}
            />
            <br />
             <input
+            style={{color:'#7b667f', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="email"
-              placeholder="Email"
+              placeholder=" Email"
               value={signUpEmail}
               onChange={this.onTextboxChangeSignUpEmail}
             /><br />
             <input
+            style={{color:'#7b667f', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="password"
-              placeholder="Lösenord"
+              placeholder=" Lösenord"
               value={signUpPassword}
               onChange={this.onTextboxChangeSignUpPassword}
             /><br />
-            <button onClick={this.onSignUp}>Skapa konto</button>
+            <button  style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.onSignUp}>Skapa konto</button>
           </div>
 
         </div>
