@@ -243,28 +243,30 @@ class Home extends Component {
     if (!token) {
       return (
         <div >
-          <div >
+          <div style={{marginLeft:'30px'}} >
             {
               (signInError) ? (
                 <p>{signInError}</p>
               ) : (null)
             }
-            <p>Logga In</p>
-            <input
+            <h2 style={{color:'#bdb0c0', marginBottom:'-1px'}} >Logga In</h2>
+            <input 
+              style={{color:'#bdb0c0', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="email"
-              placeholder="Mail"
+              placeholder=" Mail"
               value={signInEmail}
               onChange={this.onTextboxChangeSignInEmail}
             />
             <br />
             <input
+              style={{color:'#bdb0c0', backgroundColor:'#', borderRadius:'3px', border: '2px solid gray'}}
               type="password"
-              placeholder="Lösenord"
+              placeholder=" Lösenord"
               value={signInPassword}
               onChange={this.onTextboxChangeSignInPassword}
             />
             <br />
-            <button onClick={this.onSignIn}>Logga In</button>
+            <button style={{color:'#bdb0c0', borderRadius:'3px', border: '2px solid gray'}} onClick={this.onSignIn}>Logga In</button>
           </div>
           <br />
           <br />
