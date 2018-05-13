@@ -6,13 +6,9 @@ import {
 } from '../../utils/storage';
 import { userInfo } from 'os';
 
-
-
-
 class Home extends Component {
   constructor(props) {
     super(props);
-   
 
     this.state = {
       isLoading: true,
@@ -26,6 +22,8 @@ class Home extends Component {
       signUpEmail: '',
       signUpPassword: '',
     };
+
+    const { match, location, history } = this.props
 
     this.onTextboxChangeSignInEmail = this.onTextboxChangeSignInEmail.bind(this);
     this.onTextboxChangeSignInPassword = this.onTextboxChangeSignInPassword.bind(this);
@@ -173,7 +171,7 @@ class Home extends Component {
         console.log('json', json);
         if (json.success) {
           setInStorage('the_main_app', { token: json.token});
-          setInStorage('the_main_name',  'Välkommen '+ json.firstName ); 
+          setInStorage('the_main_name',  'Välkommen '+ json.firstName );
 
           
           this.setState({
@@ -197,9 +195,17 @@ class Home extends Component {
     fetch('/api/fooddata/get')
     .then(res => res.json())
     .then(json => {
-      console.log(number)
-    });
-    console.log('visa mat')
+      console.log('Namn på livsmedel', json.Namn)
+      this.props.history.push({
+        pathname: `../Food/Food/mat:` + json.Namn,
+        state: { mat: json.Namn }
+      }) 
+      //return (<div>{mat}</div>)
+    })
+    //console.log('visa mat')
+    //console.log('ute '+mat)
+    //return (<div>{mat}</div>)
+    //return (mat)
   }
 
   logout() {
@@ -331,14 +337,14 @@ class Home extends Component {
 
    const stone = 'assets/img/stones.png';
    // const FoodItems = require('../../../../server/models/FoodItems');
-   console.log(JSON.stringify());
+   // console.log(JSON.stringify());
 
     return (
       <div style={{color:'#fcf4ff', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
         <h2> Användarens namn ska skrivas ut här</h2>
         <h2> {getFromStorage('the_main_name')}</h2>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
-        <h2> Welcome {Storage.firstName}.</h2>
+        <h2> {this.firstName()}.</h2>
         <br />
         <br />
         <br />
@@ -346,10 +352,12 @@ class Home extends Component {
         <br />
         <br />
         <br />
-        <p> Här ska användarens tidigare data  finnas </p>
-        <br />
-        <br />
         <button onClick={this.displayFood}>Visa mat</button>
+        <p> Här ska användarens tidigare data  finnas </p>
+        <h2></h2>
+        <p id="mat"></p>
+        <br />
+        <br />
         <br />   
         <button onClick={this.logout}>Logout</button>
       </div>

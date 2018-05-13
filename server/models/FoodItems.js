@@ -22,4 +22,8 @@ const FoodItemSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('FoodItem', FoodItemSchema)
+
+// Create a model using the schema.
+const FoodItems = mongoose.model('FoodItems', FoodItemSchema)
+// Export the model.
+module.exports = FoodItems

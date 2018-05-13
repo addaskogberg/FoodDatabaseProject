@@ -1,6 +1,6 @@
 const User = require('../../models/User')
 const UserSession = require('../../models/UserSession')
-const FoodItem = require('../../models/FoodItems');
+const FoodItems = require('../../models/FoodItems');
 
 module.exports = (app) => {
 
@@ -207,14 +207,36 @@ module.exports = (app) => {
     });
   });
 
+  
   app.get('/api/fooddata/get', (req, res, next) =>{
-     const { query } = req;
-    console.log('i metoden')
-    var foodItem = FoodItem.findOne({ Nummer: 1 }); 
-    console.log(foodItem.Namn)
-    res.send({
-      Nummer: foodItem.Nummer, Namn: foodItem.Namn
+    
+    const MongoClient = require('mongodb').MongoClient
+
+    MongoClient.connect('mongodb://localhost:27017', (error, client) => {
+      if (error) throw error
+      var db = client.db('foodData')
+      db.collection('foodItems', function (error, collection) {
+        if (error) throw error
+        var fooditem = collection.find({ Nummer: 1 })
+        fooditem.forEach(function (doc) {
+          // console.log(doc)
+          return res.send(doc)
+        }, function (err) {
+          if (err) throw err
+        })
+      })
     })
+    
+    /*
+    const { query } = req;
+    console.log('i metoden')
+    // let myNumber = parseInt(1)
+    var foodItems = FoodItems.find({ Nummer: 1 });
+    console.log(foodItems)
+    return  res.send({
+      FoodItems: foodItems.Namn
+    })
+    */
   });
 
 };
