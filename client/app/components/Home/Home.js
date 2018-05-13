@@ -6,6 +6,9 @@ import {
 } from '../../utils/storage';
 import { userInfo } from 'os';
 
+
+
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +38,7 @@ class Home extends Component {
     this.onSignUp = this.onSignUp.bind(this);
     this.logout = this.logout.bind(this);
     this.firstName = this.firstName.bind(this);
+    this.displayFood = this.displayFood.bind(this);
   }
 
   componentDidMount() {
@@ -169,7 +173,8 @@ class Home extends Component {
         console.log('json', json);
         if (json.success) {
           setInStorage('the_main_app', { token: json.token});
-          setInStorage('the_main_name', { firstName: json.firstName });
+          setInStorage('the_main_name',  'Välkommen '+ json.firstName ); 
+
           
           this.setState({
             signInError: json.message,
@@ -186,6 +191,15 @@ class Home extends Component {
         }
       });
       // this.props.history.push(`/DinSida`)
+  }
+
+  displayFood(){
+    fetch('/api/fooddata/get')
+    .then(res => res.json())
+    .then(json => {
+      console.log(number)
+    });
+    console.log('visa mat')
   }
 
   logout() {
@@ -315,14 +329,16 @@ class Home extends Component {
     }
     
 
-    const stone = 'assets/img/stones.png';
+   const stone = 'assets/img/stones.png';
+   // const FoodItems = require('../../../../server/models/FoodItems');
+   console.log(JSON.stringify());
 
-   console.log(JSON.stringify(getFromStorage('the_main_name'))); 
     return (
       <div style={{color:'#fcf4ff', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
         <h2> Användarens namn ska skrivas ut här</h2>
-        <h2> {(JSON.stringify(getFromStorage('the_main_name')))}</h2>
+        <h2> {getFromStorage('the_main_name')}</h2>
         <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        <h2> Welcome {Storage.firstName}.</h2>
         <br />
         <br />
         <br />
@@ -333,6 +349,7 @@ class Home extends Component {
         <p> Här ska användarens tidigare data  finnas </p>
         <br />
         <br />
+        <button onClick={this.displayFood}>Visa mat</button>
         <br />   
         <button onClick={this.logout}>Logout</button>
       </div>

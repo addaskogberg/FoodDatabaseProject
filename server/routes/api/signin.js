@@ -1,6 +1,6 @@
 const User = require('../../models/User')
 const UserSession = require('../../models/UserSession')
-
+const FoodItem = require('../../models/FoodItems');
 
 module.exports = (app) => {
 
@@ -206,4 +206,15 @@ module.exports = (app) => {
    
     });
   });
+
+  app.get('/api/fooddata/get', (req, res, next) =>{
+     const { query } = req;
+    console.log('i metoden')
+    var foodItem = FoodItem.findOne({ Nummer: 1 }); 
+    console.log(foodItem.Namn)
+    res.send({
+      Nummer: foodItem.Nummer, Namn: foodItem.Namn
+    })
+  });
+
 };

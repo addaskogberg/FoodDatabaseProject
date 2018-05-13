@@ -1,4 +1,6 @@
 body{
   background-image: url("assets/img/stones.png");
+  background-repeat: no-repeat;
   height: 800px;
+  width: 1200px;
 }
