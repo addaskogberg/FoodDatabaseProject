@@ -341,10 +341,10 @@ class Home extends Component {
 
     return (
       <div style={{color:'#fcf4ff', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
-        <h2> Användarens namn ska skrivas ut här</h2>
-        <h2> {getFromStorage('the_main_name')}</h2>
-        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        {/* <h2> {getFromStorage('the_main_name')}</h2> */}
         <h2> {this.firstName()}.</h2>
+        <h2> Dagens datum är </h2>
+        <h2> {new Date().toLocaleTimeString()}.</h2>
         <br />
         <br />
         <br />
@@ -353,7 +353,7 @@ class Home extends Component {
         <br />
         <br />
         <button onClick={this.displayFood}>Visa mat</button>
-        <p> Här ska användarens tidigare data  finnas </p>
+        <p> Klicka för användarens sparade data </p>
         <h2></h2>
         <p id="mat"></p>
         <br />
