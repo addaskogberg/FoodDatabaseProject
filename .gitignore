@@ -1,8 +1,5 @@
 # Compiled files
 dist/
-
-
-
 # Node stuff
 node_modules
 .npm
