@@ -67,6 +67,11 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    
+    new plugins.WriteFilePlugin({
+      // exclude hot-update files
+      test: /^(?!.*(hot)).*/,
+    }),
 
     new webpack.DefinePlugin({
       'process.env': {
