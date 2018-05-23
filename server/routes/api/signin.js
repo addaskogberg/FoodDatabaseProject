@@ -212,10 +212,13 @@ module.exports = (app) => {
     
     const MongoClient = require('mongodb').MongoClient
 
-    MongoClient.connect('mongodb://localhost:27017', (error, client) => {
-      if (error) throw error
-      var db = client.db('foodData')
-      db.collection('foodItems', function (error, collection) {
+    // MongoClient.connect('mongodb://localhost:27017', (error, client) => {
+    MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
+        if (error) throw error
+      //var db = client.db('foodData')
+      //db.collection('foodItems', function (error, collection) {
+      var db = client.db('addaskogberg')
+      db.collection('foodData', function (error, collection) {
         if (error) throw error
         var fooditem = collection.find({ Nummer: 1 })
         fooditem.forEach(function (doc) {
