@@ -196,17 +196,11 @@ class Home extends Component {
     fetch('/api/fooddata/get')
     .then(res => res.json())
     .then(json => {
-      console.log('Namn på livsmedel', json.Namn)
+      console.log('Namnet på livsmedel', json.Namn)
       console.log('Energi: ', json.Energi)
       this.setState({
         dbText: json.Namn
       })
-      /*
-      this.props.history.push({
-        pathname: `../Food/Food/mat:` + json.Namn,
-        state: { mat: json.Namn }
-      })
-      */ 
     })
   }
 
