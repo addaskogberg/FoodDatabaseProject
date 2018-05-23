@@ -7,10 +7,16 @@ const commonConfig = require('./webpack.common');
 module.exports = merge(commonConfig, {
   mode: 'production',
 
-  output: {
+/*   output: {
     filename: 'js/[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
-  },
+  }, */
+  output: {
+    path: path.join(root, "dist"),
+    filename: "bundle.js",
+    hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
+},
 
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
