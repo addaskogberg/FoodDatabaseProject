@@ -212,34 +212,19 @@ module.exports = (app) => {
     
     const MongoClient = require('mongodb').MongoClient
 
-    // MongoClient.connect('mongodb://localhost:27017', (error, client) => {
     MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
-        if (error) throw error
-      //var db = client.db('foodData')
-      //db.collection('foodItems', function (error, collection) {
+      if (error) throw error
       var db = client.db('addaskogberg')
       db.collection('foodData', function (error, collection) {
         if (error) throw error
-        var fooditem = collection.find({ Nummer: 1 })
+        var fooditem = collection.find({ Nummer: 34 })
         fooditem.forEach(function (doc) {
-          // console.log(doc)
+          console.log(doc)
           return res.send(doc)
         }, function (err) {
           if (err) throw err
         })
       })
     })
-    
-    /*
-    const { query } = req;
-    console.log('i metoden')
-    // let myNumber = parseInt(1)
-    var foodItems = FoodItems.find({ Nummer: 1 });
-    console.log(foodItems)
-    return  res.send({
-      FoodItems: foodItems.Namn
-    })
-    */
   });
-
 };

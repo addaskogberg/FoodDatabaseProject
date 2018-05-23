@@ -21,6 +21,7 @@ class Home extends Component {
       signUpLastName: '',
       signUpEmail: '',
       signUpPassword: '',
+      dbText: 'Här kommer maten'
     };
 
     const { match, location, history } = this.props
@@ -196,16 +197,17 @@ class Home extends Component {
     .then(res => res.json())
     .then(json => {
       console.log('Namn på livsmedel', json.Namn)
+      console.log('Energi: ', json.Energi)
+      this.setState({
+        dbText: json.Namn
+      })
+      /*
       this.props.history.push({
         pathname: `../Food/Food/mat:` + json.Namn,
         state: { mat: json.Namn }
-      }) 
-      //return (<div>{mat}</div>)
+      })
+      */ 
     })
-    //console.log('visa mat')
-    //console.log('ute '+mat)
-    //return (<div>{mat}</div>)
-    //return (mat)
   }
 
   logout() {
@@ -254,6 +256,7 @@ class Home extends Component {
       signUpEmail,
       signUpPassword,
       signUpError,
+      dbText
     } = this.state;
 
     if (isLoading) {
@@ -355,7 +358,7 @@ class Home extends Component {
         <button onClick={this.displayFood}>Visa mat</button>
         <p> Klicka för användarens sparade data </p>
         <h2></h2>
-        <p id="mat"></p>
+        <p id="mat">{this.state.dbText}</p>
         <br />
         <br />
         <br />   
