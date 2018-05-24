@@ -246,8 +246,9 @@ module.exports = (app) => {
     
           collection.find({ Namn: searchFor }).toArray(function (error, docs) {
             if (error) throw error
-            console.log(docs)
+            //console.log(docs)
             console.log('Klar med Array return')
+            return res.send(docs)
           })
           // var fooditem = collection.find({ Namn: searchFor })
 

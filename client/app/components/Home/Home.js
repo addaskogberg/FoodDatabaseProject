@@ -21,7 +21,8 @@ class Home extends Component {
       signUpLastName: '',
       signUpEmail: '',
       signUpPassword: '',
-      dbText: 'Här kommer maten'
+      dbText: 'Här kommer maten',
+      dbSearchResult: 'Här kommer listan med mat: '
     };
 
     const { match, location, history } = this.props
@@ -197,8 +198,16 @@ class Home extends Component {
     fetch('/api/searchFood/get')
     .then(res => res.json())
     .then(json => {
-      console.log('Namnet på livsmedel', json.Namn)
-      //console.log('Energi: ', json.item)
+      let searchresult = []
+      json.forEach(function (item ){
+        // console.log(item)
+        searchresult.push(<span key={item._id}>{item.Namn}<br/></span>)
+      })
+      console.log(searchresult)
+      this.setState({
+        dbSearchResult: searchresult
+      })
+
     })
     console.log('letar efter maten')
   }
@@ -261,7 +270,8 @@ class Home extends Component {
       signUpEmail,
       signUpPassword,
       signUpError,
-      dbText
+      dbText,
+      dbSearchResult
     } = this.state;
 
     if (isLoading) {
@@ -359,7 +369,7 @@ class Home extends Component {
         <br />
         <input type='text' /> 
         <button onClick={this.searchFood}>Sök Livsmedel</button>
-        <p> Här ska användarens inmatning finnas </p>
+        <p> {this.state.dbSearchResult}</p>
         <br />
         <br />
         <br />
