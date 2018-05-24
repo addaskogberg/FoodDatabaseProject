@@ -38,6 +38,7 @@ class Home extends Component {
     this.logout = this.logout.bind(this);
     this.firstName = this.firstName.bind(this);
     this.displayFood = this.displayFood.bind(this);
+    this.searchFood = this.searchFood.bind(this);
   }
 
   componentDidMount() {
@@ -192,6 +193,10 @@ class Home extends Component {
       // this.props.history.push(`/DinSida`)
   }
 
+  searchFood(){
+    console.log('letar efter maten')
+  }
+
   displayFood(){
     fetch('/api/fooddata/get')
     .then(res => res.json())
@@ -342,9 +347,12 @@ class Home extends Component {
         <h2> {this.firstName()}.</h2>
         <h2> Dagens datum är </h2>
         <h2> {new Date().toLocaleTimeString()}.</h2>
+        <h2> {new Date().toLocaleDateString()}.</h2>
         <br />
         <br />
         <br />
+        <input type='text' /> 
+        <button onClick={this.searchFood}>Sök Livsmedel</button>
         <p> Här ska användarens inmatning finnas </p>
         <br />
         <br />
