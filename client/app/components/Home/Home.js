@@ -201,7 +201,7 @@ class Home extends Component {
       let searchresult = []
       json.forEach(function (item ){
         // console.log(item)
-        searchresult.push(<span key={item._id}>{item.Namn}<br/></span>)
+        searchresult.push(<option value = {item.namn} key={item._id}>{item.Namn}</option>)
       })
       console.log(searchresult)
       this.setState({
@@ -369,7 +369,8 @@ class Home extends Component {
         <br />
         <input type='text' /> 
         <button onClick={this.searchFood}>Sök Livsmedel</button>
-        <p> {this.state.dbSearchResult}</p>
+        <br />
+        <select> {this.state.dbSearchResult}</select>
         <br />
         <br />
         <br />
