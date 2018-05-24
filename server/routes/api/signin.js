@@ -244,11 +244,21 @@ module.exports = (app) => {
     
           var searchFor = new RegExp(RegExp.quote(searchstring), 'g')
     
-          var fooditem = collection.find({ Namn: searchFor })
-    
-          fooditem.forEach(function (item) {
-            console.log(item.Namn)
+          collection.find({ Namn: searchFor }).toArray(function (error, docs) {
+            if (error) throw error
+            console.log(docs)
+            console.log('Klar med Array return')
           })
+          // var fooditem = collection.find({ Namn: searchFor })
+
+          
+          // fooditem.forEach(function (item) {
+          //   console.log(item.Namn)
+          //   if(item.Namn === 'Mjölkpulver fett 1%'){
+          //     return res.send(item)
+          //   }
+          // })
+          
         })
       })
       .catch(function (err) {
