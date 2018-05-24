@@ -227,4 +227,33 @@ module.exports = (app) => {
       })
     })
   });
+
+  app.get('/api/searchFood/get', (req, res, next) =>{
+    RegExp.quote = function (str) {
+      return str.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1')
+    }
+    const MongoClient = require('mongodb').MongoClient
+    var url = 'mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg'
+    MongoClient.connect(url)
+      .then(function (db) {
+        var foodDb = db.db('addaskogberg')
+        foodDb.collection('foodData', function (error, collection) {
+          if (error) throw error
+    
+          var searchstring = 'Mjölk'
+    
+          var searchFor = new RegExp(RegExp.quote(searchstring), 'g')
+    
+          var fooditem = collection.find({ Namn: searchFor })
+    
+          fooditem.forEach(function (item) {
+            console.log(item.Namn)
+          })
+        })
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
+
+  });
 };

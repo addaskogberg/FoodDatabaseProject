@@ -194,6 +194,12 @@ class Home extends Component {
   }
 
   searchFood(){
+    fetch('/api/searchFood/get')
+    .then(res => res.json())
+    .then(json => {
+      console.log('Namnet på livsmedel', json.Item.Namn)
+     // console.log('Energi: ', json.Energi)
+    })
     console.log('letar efter maten')
   }
 
