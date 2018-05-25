@@ -362,13 +362,14 @@ class Home extends Component {
         {/* <h2> {getFromStorage('the_main_name')}</h2> */}
         <h2> {this.firstName()}.</h2>
         <h2> Dagens datum är </h2>
-        <h2> {new Date().toLocaleTimeString()}.</h2>
         <h2> {new Date().toLocaleDateString()}.</h2>
+{/*         <h2> Klockan är </h2>
+        <h2> {new Date().toLocaleTimeString()}.</h2> */}
         <br />
         <br />
         <br />
         <input type='text' /> 
-        <button onClick={this.searchFood}>Sök Livsmedel</button>
+        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.searchFood}>Sök Livsmedel</button>
         <br />
         <select> {this.state.dbSearchResult}</select>
         <br />
@@ -381,7 +382,7 @@ class Home extends Component {
         <br />
         <br />
         <br />   
-        <button onClick={this.logout}>Logout</button>
+        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.logout}>Logout</button>
       </div>
     );
   }
