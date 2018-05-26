@@ -250,16 +250,41 @@ module.exports = (app) => {
             console.log('Klar med Array return')
             return res.send(docs)
           })
-          // var fooditem = collection.find({ Namn: searchFor })
+        })
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
 
-          
-          // fooditem.forEach(function (item) {
-          //   console.log(item.Namn)
-          //   if(item.Namn === 'Mjölkpulver fett 1%'){
-          //     return res.send(item)
-          //   }
-          // })
-          
+  });
+
+  app.post('/api/searchFood/post', (req, res, next) =>{
+    const {body} = req;
+    const {
+      foodSearch
+    } = body;
+  
+    RegExp.quote = function (str) {
+      return str.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1')
+    }
+    const MongoClient = require('mongodb').MongoClient
+    var url = 'mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg'
+    MongoClient.connect(url)
+      .then(function (db) {
+        var foodDb = db.db('addaskogberg')
+        foodDb.collection('foodData', function (error, collection) {
+          if (error) throw error
+    
+          var searchstring = foodSearch
+    
+          var searchFor = new RegExp(RegExp.quote(searchstring), 'g')
+    
+          collection.find({ Namn: searchFor }).toArray(function (error, docs) {
+            if (error) throw error
+            console.log(foodSearch)
+            console.log('Klar med Array return')
+            return res.send(docs)
+          })
         })
       })
       .catch(function (err) {

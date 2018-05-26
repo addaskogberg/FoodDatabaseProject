@@ -22,7 +22,8 @@ class Home extends Component {
       signUpEmail: '',
       signUpPassword: '',
       dbText: 'Här kommer maten',
-      dbSearchResult: 'Här kommer listan med mat: '
+      dbSearchResult: 'Här kommer listan med mat: ',
+      foodInput: ''
     };
 
     const { match, location, history } = this.props
@@ -33,6 +34,7 @@ class Home extends Component {
     this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(this);
     this.onTextboxChangeSignUpFirstName = this.onTextboxChangeSignUpFirstName.bind(this);
     this.onTextboxChangeSignUpLastName = this.onTextboxChangeSignUpLastName.bind(this);
+    this.onTextboxChangeFoodInput = this.onTextboxChangeFoodInput.bind(this);
 
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
@@ -100,6 +102,11 @@ class Home extends Component {
     this.setState({
       signUpLastName: event.target.value,
     });
+  }
+  onTextboxChangeFoodInput(event){
+    this.setState({
+      foodInput: event.target.value,
+    })
   }
 
   onSignUp() {
@@ -195,7 +202,15 @@ class Home extends Component {
   }
 
   searchFood(){
-    fetch('/api/searchFood/get')
+    fetch('/api/searchFood/get', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        foodSearch: foodInput,
+      }),
+    })
     .then(res => res.json())
     .then(json => {
       let searchresult = []
@@ -271,7 +286,8 @@ class Home extends Component {
       signUpPassword,
       signUpError,
       dbText,
-      dbSearchResult
+      dbSearchResult,
+      foodInput
     } = this.state;
 
     if (isLoading) {
@@ -368,7 +384,7 @@ class Home extends Component {
         <br />
         <br />
         <br />
-        <input type='text' /> 
+        <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' /> 
         <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.searchFood}>Sök Livsmedel</button>
         <br />
         <select> {this.state.dbSearchResult}</select>
