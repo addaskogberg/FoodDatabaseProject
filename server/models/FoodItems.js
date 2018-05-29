@@ -1,5 +1,11 @@
+/**
+ * model for food item schemas in mongodb
+ * author Adda Skogberg
+ */
+
 const mongoose = require('mongoose')
 
+// user schema for mongodb
 const FoodItemSchema = new mongoose.Schema({
   Nummer: Number,
   Namn: String,

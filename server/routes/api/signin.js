@@ -1,8 +1,94 @@
 const User = require('../../models/User')
 const UserSession = require('../../models/UserSession')
 const FoodItems = require('../../models/FoodItems');
+const UserFood = require('../../models/UserFood')
 
 module.exports = (app) => {
+
+  // den här går mot spara mat
+  app.post('/api/fooddata/post', (req, res, next) =>{
+    const {body} = req;
+    const {
+      selectedFood,
+      selectedAmount,
+      token
+    } = body;
+    
+    console.log('selectedFood: ' + selectedFood + ' * selectedAmount: ' +selectedAmount + ' * token: ' + token)
+
+    if(!selectedFood){
+      return res.send({
+        success: false,
+        message: 'Error: Selected Food cannot be blank. '
+      });
+    }
+        
+    if(!selectedAmount){
+      return res.send({
+        success: false,
+        message: 'Error: Selected Amount cannot be blank. '
+      });
+    }
+        
+    if(!token){
+      return res.send({
+        success: false,
+        message: 'Error: You have to sign in to save your food. '
+      });
+    }
+
+    // var userId = ''
+    const userSession = UserSession.find({
+      _id: token,
+      isDeleted: false
+    }, (err, sessions ) => {
+      if (err){
+       throw err;
+      } else {
+        //console.log('sessions: ' + sessions[0].userId)
+        //userId = sessions[0].userId
+        const newUserFood = new UserFood();
+
+        newUserFood.Namn = selectedFood;
+        newUserFood.userId = sessions[0].userId;
+        newUserFood.Viktgram = selectedAmount;
+        newUserFood.Nummer = -1;
+        newUserFood.Energi = {Värde: -1, Enhet: 'kcal'};
+        newUserFood.save((err, user) => {
+          if (err) {
+            console.log(err)
+            return res.send({
+              success: false,
+              message: 'Error: server error'
+            });
+          }
+          console.log('success')
+          return res.send({
+            success: true,
+            message: 'Signed up'
+          });
+        });
+      }
+    });
+
+    /*
+    const MongoClient = require('mongodb').MongoClient
+    MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
+      if (error) throw error
+      var db = client.db('addaskogberg')
+      db.collection('foodData', function (error, collection) {
+        if (error) throw error
+        var fooditem = collection.find({ Nummer: 45 })
+        fooditem.forEach(function (doc) {
+          console.log(doc)
+          return res.send(doc)
+        }, function (err) {
+          if (err) throw err
+        })
+      })
+    })
+    */
+  });
 
   app.post('/api/account/signup', (req, res, next) => {
     const {body} = req;
@@ -205,27 +291,6 @@ module.exports = (app) => {
         });
    
     });
-  });
-
-  
-  app.get('/api/fooddata/get', (req, res, next) =>{
-    
-    const MongoClient = require('mongodb').MongoClient
-
-    MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
-      if (error) throw error
-      var db = client.db('addaskogberg')
-      db.collection('foodData', function (error, collection) {
-        if (error) throw error
-        var fooditem = collection.find({ Nummer: 34 })
-        fooditem.forEach(function (doc) {
-          console.log(doc)
-          return res.send(doc)
-        }, function (err) {
-          if (err) throw err
-        })
-      })
-    })
   });
 
   app.get('/api/searchFood/get', (req, res, next) =>{

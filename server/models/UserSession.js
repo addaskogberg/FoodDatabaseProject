@@ -1,5 +1,11 @@
+/**
+ * model for session schemas in mongodb
+ * author Adda Skogberg
+ */
+
 const mongoose = require('mongoose')
 
+// user schema for mongodb
 const UserSessionSchema = new mongoose.Schema({
   userId: {
     type : String,

@@ -23,7 +23,9 @@ class Home extends Component {
       signUpPassword: '',
       dbText: 'Här kommer maten',
       dbSearchResult: 'Här kommer listan med mat: ',
-      foodInput: ''
+      foodInput: '',
+      selectedFood: '',
+      selectedAmount: ''
     };
 
     const { match, location, history } = this.props
@@ -35,12 +37,14 @@ class Home extends Component {
     this.onTextboxChangeSignUpFirstName = this.onTextboxChangeSignUpFirstName.bind(this);
     this.onTextboxChangeSignUpLastName = this.onTextboxChangeSignUpLastName.bind(this);
     this.onTextboxChangeFoodInput = this.onTextboxChangeFoodInput.bind(this);
+    this.onDropdownChangeSelectedFood = this.onDropdownChangeSelectedFood.bind(this);
+    this.onTextboxChangeSelectedAmount = this.onTextboxChangeSelectedAmount.bind(this);
 
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
     this.logout = this.logout.bind(this);
     this.firstName = this.firstName.bind(this);
-    this.displayFood = this.displayFood.bind(this);
+    this.saveFood = this.saveFood.bind(this);
     this.searchFood = this.searchFood.bind(this);
   }
 
@@ -106,8 +110,19 @@ class Home extends Component {
   onTextboxChangeFoodInput(event){
     this.setState({
       foodInput: event.target.value,
-    })
+    });
   }
+    onDropdownChangeSelectedFood(event){
+      this.setState({
+        selectedFood: event.target.value,
+      });
+    }
+    onTextboxChangeSelectedAmount(event){
+        this.setState({
+          selectedAmount: event.target.value,
+        });
+      }
+  
 
   onSignUp() {
     // Grab state
@@ -207,7 +222,7 @@ class Home extends Component {
       foodInput
     } = this.state;
 
-    console.log(foodInput)
+    // console.log(foodInput)
     fetch('/api/searchFood/post', {
       method: 'POST',
       headers: {
@@ -233,12 +248,29 @@ class Home extends Component {
     console.log('letar efter maten')
   }
 
-  displayFood(){
-    fetch('/api/fooddata/get')
+ // här logiken för knappen spara mat
+  saveFood(){
+    // Grab state
+    const {
+      selectedFood,
+      selectedAmount,
+      token
+    } = this.state;
+    fetch('/api/fooddata/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        selectedFood: selectedFood,
+        selectedAmount: selectedAmount,
+        token: token
+      }),
+    })
     .then(res => res.json())
     .then(json => {
-      console.log('Namnet på livsmedel', json.Namn)
-      console.log('Energi: ', json.Energi)
+      // console.log('Namnet på livsmedel', json.Namn)
+      // console.log('Energi: ', json.Energi)
       this.setState({
         dbText: json.Namn
       })
@@ -293,7 +325,9 @@ class Home extends Component {
       signUpError,
       dbText,
       dbSearchResult,
-      foodInput
+      foodInput,
+      selectedFood,
+      selectedAmount
     } = this.state;
 
     if (isLoading) {
@@ -380,31 +414,31 @@ class Home extends Component {
    // console.log(JSON.stringify());
 
     return (
-      <div style={{color:'#fcf4ff', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
-        {/* <h2> {getFromStorage('the_main_name')}</h2> */}
-        <h2> {this.firstName()}.</h2>
+      <div style={{color:'#948099', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
+        <h2 style={{marginLeft:'20px'}}> {this.firstName()}.</h2>
+        <div style={{marginRight:'50px',marginTop:'-70px', float:'right'}}>
         <h2> Dagens datum är </h2>
         <h2> {new Date().toLocaleDateString()}.</h2>
-{/*         <h2> Klockan är </h2>
-        <h2> {new Date().toLocaleTimeString()}.</h2> */}
+        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.logout}>Logout</button>
+        </div>
         <br />
-        <br />
-        <br />
-        <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' /> 
+        <div style={{marginLeft:'20px'}}>
+        <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' placeholder="Sök livsmedel" /> 
         <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.searchFood}>Sök Livsmedel</button>
         <br />
-        <select> {this.state.dbSearchResult}</select>
+        <select value={selectedFood} onChange={this.onDropdownChangeSelectedFood} > {this.state.dbSearchResult}</select>
         <br />
         <br />
+        <input value={selectedAmount} onChange={this.onTextboxChangeSelectedAmount}type='text'  placeholder="Ange mängd"/>
         <br />
-        <button onClick={this.displayFood}>Visa mat</button>
-        <p> Klicka för användarens sparade data </p>
-        <h2></h2>
+        <button onClick={this.saveFood}>Spara mat</button>
+        <h2>Din sparade mat</h2>
         <p id="mat">{this.state.dbText}</p>
         <br />
         <br />
         <br />   
-        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.logout}>Logout</button>
+        
+        </div>
       </div>
     );
   }
