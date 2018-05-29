@@ -202,7 +202,13 @@ class Home extends Component {
   }
 
   searchFood(){
-    fetch('/api/searchFood/get', {
+    // Grab state
+    const {
+      foodInput
+    } = this.state;
+
+    console.log(foodInput)
+    fetch('/api/searchFood/post', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
