@@ -112,17 +112,16 @@ class Home extends Component {
       foodInput: event.target.value,
     });
   }
-    onDropdownChangeSelectedFood(event){
-      this.setState({
-        selectedFood: event.target.value,
-      });
-    }
-    onTextboxChangeSelectedAmount(event){
-        this.setState({
-          selectedAmount: event.target.value,
-        });
-      }
-  
+  onDropdownChangeSelectedFood(event){
+    this.setState({
+      selectedFood: event.target.value,
+    });
+  }
+  onTextboxChangeSelectedAmount(event){
+    this.setState({
+      selectedAmount: event.target.value,
+    });
+  }
 
   onSignUp() {
     // Grab state
@@ -235,13 +234,16 @@ class Home extends Component {
     .then(res => res.json())
     .then(json => {
       let searchresult = []
+      let mat = ''
       json.forEach(function (item ){
         // console.log(item)
-        searchresult.push(<option value = {item.namn} key={item._id}>{item.Namn}</option>)
+        searchresult.push(<option value = {item.Namn} key={item._id}>{item.Namn}</option>)
+        mat = item.Namn
       })
      // console.log(searchresult)
       this.setState({
-        dbSearchResult: searchresult
+        dbSearchResult: searchresult,
+        dbText: mat
       })
 
     })
@@ -275,7 +277,36 @@ class Home extends Component {
         dbText: json.Namn
       })
     })
+    this.printFood()
   }
+
+  printFood(){
+    // Grab state
+    const {
+      token
+    } = this.state;
+
+    fetch('/api/searchUserFood/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: token
+      }),
+    })
+    .then(res => res.json())
+    .then(json => {
+      let searchresult = []
+      json.forEach(function (item ){
+        searchresult.push(<li key={item._id}>{item.Namn + ', vikt: ' + item.Viktgram + ' g. ' + item.Energi.Värde + ' kcal.'}</li>)
+      })
+      this.setState({
+        dbText: searchresult
+      })
+    })
+  }
+
 
   logout() {
     this.setState({
@@ -433,12 +464,12 @@ class Home extends Component {
         <br />
         <button onClick={this.saveFood}>Spara mat</button>
         <h2>Din sparade mat</h2>
-        <p id="mat">{this.state.dbText}</p>
+        <ul id="mat">{this.state.dbText}</ul>
         <br />
         <br />
         <br />   
         
-        </div>
+        </div>{this.printFood()}
       </div>
     );
   }

@@ -6,6 +6,48 @@ const UserFood = require('../../models/UserFood')
 module.exports = (app) => {
 
   // den här går mot spara mat
+  app.post('/api/searchUserFood/post', (req, res, next) =>{
+    const {body} = req;
+    const {
+      token
+    } = body;
+
+    if(!token){
+      return res.send({
+        success: false,
+        message: 'Error: You have to sign in to save your food. '
+      });
+    }
+
+    // var userId = ''
+    UserSession.find({
+      _id: token,
+      isDeleted: false
+    }, (err, sessions ) => {
+      if (err){
+       throw err;
+      } else {
+        //console.log('sessions: ' + sessions[0].userId)
+        //userId = sessions[0].userId
+        UserFood.find({
+          userId: sessions[0].userId
+        }, (err, docs) => {
+          if (err) {
+            throw err
+          } else {
+            /*docs.forEach(element => {
+              console.log(element.Namn)
+            });*/
+            return res.send(docs)
+          }
+        })
+
+      }
+    });
+  });
+
+
+  // den här går mot spara mat
   app.post('/api/fooddata/post', (req, res, next) =>{
     const {body} = req;
     const {
@@ -47,47 +89,48 @@ module.exports = (app) => {
       } else {
         //console.log('sessions: ' + sessions[0].userId)
         //userId = sessions[0].userId
-        const newUserFood = new UserFood();
+            
+        const MongoClient = require('mongodb').MongoClient
+        MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
+          if (error) throw error
+          var db = client.db('addaskogberg')
+          db.collection('foodData', function (error, collection) {
+            if (error) throw error
+            var fooditem = collection.find({ Namn: selectedFood })
+            fooditem.forEach(function (doc) {
+              //console.log(doc.Energi.Varde)
+              let Varde_kcal = selectedAmount / 100 * doc.Energi.Varde
+              const newUserFood = new UserFood();
 
-        newUserFood.Namn = selectedFood;
-        newUserFood.userId = sessions[0].userId;
-        newUserFood.Viktgram = selectedAmount;
-        newUserFood.Nummer = -1;
-        newUserFood.Energi = {Värde: -1, Enhet: 'kcal'};
-        newUserFood.save((err, user) => {
-          if (err) {
-            console.log(err)
-            return res.send({
-              success: false,
-              message: 'Error: server error'
-            });
-          }
-          console.log('success')
-          return res.send({
-            success: true,
-            message: 'Signed up'
-          });
-        });
+              newUserFood.Namn = selectedFood;
+              newUserFood.userId = sessions[0].userId;
+              newUserFood.Viktgram = selectedAmount;
+              newUserFood.Nummer = -1;
+              newUserFood.Energi = {Värde: Varde_kcal, Enhet: 'kcal'};
+              newUserFood.save((err, user) => {
+                if (err) {
+                  console.log(err)
+                  return res.send({
+                    success: false,
+                    message: 'Error: server error'
+                  });
+                }
+                console.log('success')
+                return res.send({
+                  success: true,
+                  message: 'Signed up'
+                });
+              });
+            }, function (err) {
+              if (err) throw err
+            })
+            //console.log(element)
+
+          })
+        })
+
       }
     });
-
-    /*
-    const MongoClient = require('mongodb').MongoClient
-    MongoClient.connect('mongodb://admin:Bitching1@ds229008.mlab.com:29008/addaskogberg', (error, client) => {
-      if (error) throw error
-      var db = client.db('addaskogberg')
-      db.collection('foodData', function (error, collection) {
-        if (error) throw error
-        var fooditem = collection.find({ Nummer: 45 })
-        fooditem.forEach(function (doc) {
-          console.log(doc)
-          return res.send(doc)
-        }, function (err) {
-          if (err) throw err
-        })
-      })
-    })
-    */
   });
 
   app.post('/api/account/signup', (req, res, next) => {
