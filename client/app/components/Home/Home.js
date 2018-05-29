@@ -239,13 +239,13 @@ class Home extends Component {
         // console.log(item)
         searchresult.push(<option value = {item.namn} key={item._id}>{item.Namn}</option>)
       })
-      console.log(searchresult)
+     // console.log(searchresult)
       this.setState({
         dbSearchResult: searchresult
       })
 
     })
-    console.log('letar efter maten')
+    //console.log('letar efter maten')
   }
 
  // här logiken för knappen spara mat
