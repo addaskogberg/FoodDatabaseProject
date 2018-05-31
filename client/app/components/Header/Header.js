@@ -17,7 +17,3 @@ const Header = () => (
 
 export default Header;
 
-
-  {/*  <nav>
-      <Link to="LogOut/LogOut">Logga Ut</Link>
-    </nav> */}

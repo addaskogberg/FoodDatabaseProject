@@ -441,21 +441,24 @@ class Home extends Component {
     
 
    const stone = 'assets/img/stones.png';
+   const picture = 'assets/img/yoga.png';
    // const FoodItems = require('../../../../server/models/FoodItems');
    // console.log(JSON.stringify());
 
     return (
       <div style={{color:'#948099', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
         <h2 style={{marginLeft:'20px'}}> {this.firstName()}.</h2>
-        <div style={{marginRight:'50px',marginTop:'-70px', float:'right'}}>
-        <h2> Dagens datum är </h2>
-        <h2> {new Date().toLocaleDateString()}.</h2>
-        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.logout}>Logout</button>
+        <div style={{marginRight:'50px',marginTop:'-70px', float:'right',   }}>
+        <h2 style={{marginLeft: '15px'}}> Dagens datum är </h2>
+        <h2 style={{marginLeft: '50px'}}> {new Date().toLocaleDateString()}</h2>
+        <h2 style={{marginLeft: '15px'}}> Dagens inspiration </h2>
+        <div style= {{backgroundColor:'#948099', height: '300px', width:'250px',  backgroundImage: "url(" + picture + ")", backgroundRepeat:'no-repeat', borderRadius:'5px', border:'4px solid #948099',opacity:'0.5'}}> </div>
+        <button style={{color:'#7b667f', borderRadius:'10px', border: '2px solid gray', marginTop:'50px', marginLeft:'80px', height: '50px', width: '100px'}} onClick={this.logout}>Logga Ut</button>
         </div>
         <br />
         <div style={{marginLeft:'20px'}}>
         <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' placeholder="Sök livsmedel" /> 
-        <button style={{color:'#7b667f', borderRadius:'3px', border: '2px solid gray'}} onClick={this.searchFood}>Sök Livsmedel</button>
+        <button style={{color:'#7b667f', borderRadius:'5px', border: '2px solid #948099'}} onClick={this.searchFood}>Sök Livsmedel</button>
         <br />
         <select value={selectedFood} onChange={this.onDropdownChangeSelectedFood} > {this.state.dbSearchResult}</select>
         <br />
@@ -465,7 +468,6 @@ class Home extends Component {
         <button onClick={this.saveFood}>Spara mat</button>
         <h2>Din sparade mat</h2>
         <ul id="mat">{this.state.dbText}</ul>
-        <br />
         <br />
         <br />   
         
