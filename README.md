@@ -33,3 +33,5 @@ Development (Webpack dev server) mode:
 ```shell
 npm run start:dev
 ```
+
+The food data used in this applikatin is the property of the National Food Agency of Sweden, Livsmedelsverket and is used under the licensen Creative Commons Erkännande 4.0. 
