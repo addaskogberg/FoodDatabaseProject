@@ -445,7 +445,7 @@ class Home extends Component {
    // const FoodItems = require('../../../../server/models/FoodItems');
    // console.log(JSON.stringify());
    
-   // renders when the user has logged
+   // renders when the user has logged in
     return (
     <div style={{color:'#948099', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")",  backgroundSize: '1200px', backgroundRepeat: 'no-repeat', width: '1200px', overflow: 'hidden'}}>
         <h2 style={{marginLeft:'20px'}}> {this.firstName()}.</h2>
