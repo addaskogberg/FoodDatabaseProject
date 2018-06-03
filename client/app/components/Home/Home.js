@@ -450,12 +450,12 @@ class Home extends Component {
     <div style={{color:'#948099', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")",  backgroundSize: '1200px', backgroundRepeat: 'no-repeat', width: '1200px', overflow: 'hidden'}}>
         <h2 style={{marginLeft:'20px'}}> {this.firstName()}.</h2>
         
-        <div style={{marginRight:'5px',marginTop:'-30px', position: 'absolute', left: '880px'  }}>
-          <h2 style={{marginLeft: '15px'}}> Dagens datum är </h2>
-          <h2 style={{marginLeft: '50px'}}> {new Date().toLocaleDateString()}</h2>
-          <h2 style={{marginLeft: '15px'}}> Dagens inspiration </h2>
+        <div style={{marginRight:'5px',marginTop:'-50px', position: 'absolute', left: '880px'  }}>
+          <h2 style={{marginLeft: '15px', marginTop:'5px', marginBottom:'5px'}}> Dagens datum är </h2>
+          <h2 style={{marginLeft: '50px', marginTop:'5px', marginBottom:'5px'}}> {new Date().toLocaleDateString()}</h2>
+          <h2 style={{marginLeft: '15px', marginTop:'8px', marginBottom:'5px'}}> Dagens inspiration </h2>
           <div style= {{backgroundColor:'#948099', height: '300px', width:'250px',  backgroundImage: "url(" + picture + ")", backgroundRepeat:'no-repeat', borderRadius:'5px', border:'4px solid #948099',opacity:'0.5'}}> </div>
-          <button style={{color:'#7b667f', borderRadius:'10px', border: '2px solid gray', marginTop:'50px', marginLeft:'80px', height: '50px', width: '100px'}} onClick={this.logout}>Logga Ut</button>
+          <button style={{color:'#7b667f', borderRadius:'10px', border: '2px solid gray', marginTop:'40px', marginLeft:'80px', height: '50px', width: '100px'}} onClick={this.logout}>Logga Ut</button>
         </div>
         
         <br />
