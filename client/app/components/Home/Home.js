@@ -162,7 +162,7 @@ class Home extends Component {
           });
         } else {
           this.setState({
-            signUpError: json.message,
+            signUpError:'användare finns redan',
             isLoading: false,
           });
         }
@@ -444,35 +444,38 @@ class Home extends Component {
    const picture = 'assets/img/yoga.png';
    // const FoodItems = require('../../../../server/models/FoodItems');
    // console.log(JSON.stringify());
-
+   
+   // renders when the user has logged
     return (
-      <div style={{color:'#948099', backgroundColor:'red', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")"}}>
+    <div style={{color:'#948099', height: '90%',  position: 'absolute ', bottom:'0', width: '100%', backgroundImage: "url(" + stone + ")",  backgroundSize: '1200px', backgroundRepeat: 'no-repeat', width: '1200px', overflow: 'hidden'}}>
         <h2 style={{marginLeft:'20px'}}> {this.firstName()}.</h2>
-        <div style={{marginRight:'50px',marginTop:'-70px', float:'right',   }}>
-        <h2 style={{marginLeft: '15px'}}> Dagens datum är </h2>
-        <h2 style={{marginLeft: '50px'}}> {new Date().toLocaleDateString()}</h2>
-        <h2 style={{marginLeft: '15px'}}> Dagens inspiration </h2>
-        <div style= {{backgroundColor:'#948099', height: '300px', width:'250px',  backgroundImage: "url(" + picture + ")", backgroundRepeat:'no-repeat', borderRadius:'5px', border:'4px solid #948099',opacity:'0.5'}}> </div>
-        <button style={{color:'#7b667f', borderRadius:'10px', border: '2px solid gray', marginTop:'50px', marginLeft:'80px', height: '50px', width: '100px'}} onClick={this.logout}>Logga Ut</button>
-        </div>
-        <br />
-        <div style={{marginLeft:'20px'}}>
-        <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' placeholder="Sök livsmedel" /> 
-        <button style={{color:'#7b667f', borderRadius:'5px', border: '2px solid #948099'}} onClick={this.searchFood}>Sök Livsmedel</button>
-        <br />
-        <select value={selectedFood} onChange={this.onDropdownChangeSelectedFood} > {this.state.dbSearchResult}</select>
-        <br />
-        <br />
-        <input value={selectedAmount} onChange={this.onTextboxChangeSelectedAmount}type='text'  placeholder="Ange mängd"/>
-        <br />
-        <button onClick={this.saveFood}>Spara mat</button>
-        <h2>Din sparade mat</h2>
-        <ul id="mat">{this.state.dbText}</ul>
-        <br />
-        <br />   
         
+        <div style={{marginRight:'5px',marginTop:'-30px', position: 'absolute', left: '880px'  }}>
+          <h2 style={{marginLeft: '15px'}}> Dagens datum är </h2>
+          <h2 style={{marginLeft: '50px'}}> {new Date().toLocaleDateString()}</h2>
+          <h2 style={{marginLeft: '15px'}}> Dagens inspiration </h2>
+          <div style= {{backgroundColor:'#948099', height: '300px', width:'250px',  backgroundImage: "url(" + picture + ")", backgroundRepeat:'no-repeat', borderRadius:'5px', border:'4px solid #948099',opacity:'0.5'}}> </div>
+          <button style={{color:'#7b667f', borderRadius:'10px', border: '2px solid gray', marginTop:'50px', marginLeft:'80px', height: '50px', width: '100px'}} onClick={this.logout}>Logga Ut</button>
+        </div>
+        
+        <br />
+        
+        <div style={{marginLeft:'20px'}}>
+          <input  value={foodInput} onChange={this.onTextboxChangeFoodInput}type='text' placeholder="Sök livsmedel" /> 
+          <button style={{color:'#7b667f', borderRadius:'5px', border: '2px solid #948099', marginLeft:'5px'}} onClick={this.searchFood}>Sök Livsmedel</button>
+          <br />
+          <select value={selectedFood} onChange={this.onDropdownChangeSelectedFood} > {this.state.dbSearchResult}</select>
+          <br />
+          <br />
+          <input value={selectedAmount} onChange={this.onTextboxChangeSelectedAmount}type='text'  placeholder="Ange mängd"/>
+          
+          <button style={{color:'#7b667f', borderRadius:'5px', border: '2px solid #948099', marginTop:'5px', marginLeft:'5px'}} onClick={this.saveFood}>Spara mat</button>
+          <h2>Din sparade mat</h2>
+          <ul id="mat">{this.state.dbText}</ul>
+          <br />
+          <br />     
         </div>{this.printFood()}
-      </div>
+    </div>
     );
   }
 }
