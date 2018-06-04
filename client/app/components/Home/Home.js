@@ -235,6 +235,7 @@ class Home extends Component {
     .then(json => {
       let searchresult = []
       let mat = ''
+      searchresult.push(<option value = 'välj' key= 'välj'>{'välj'}</option>)
       json.forEach(function (item ){
         // console.log(item)
         searchresult.push(<option value = {item.Namn} key={item._id}>{item.Namn}</option>)
