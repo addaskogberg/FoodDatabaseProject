@@ -468,7 +468,7 @@ class Home extends Component {
           <select value={selectedFood} onChange={this.onDropdownChangeSelectedFood} > {this.state.dbSearchResult}</select>
           <br />
           <br />
-          <input value={selectedAmount} onChange={this.onTextboxChangeSelectedAmount}type='text'  placeholder="Ange mängd"/>
+          <input value={selectedAmount} onChange={this.onTextboxChangeSelectedAmount}type='text'  placeholder="Ange mängd i gram"/>
           
           <button style={{color:'#7b667f', borderRadius:'5px', border: '2px solid #948099', marginTop:'5px', marginLeft:'5px'}} onClick={this.saveFood}>Spara mat</button>
           <h2>Din sparade mat</h2>
